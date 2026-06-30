@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.1.0
+
+A maintenance release: an automated test suite, CI, and a dependency refresh.
+No breaking API changes.
+
+### Added
+
+- **Test suite.** Unit tests for `preprocess_text`, `ExactClusterer`, and
+  `FuzzyClusterer`, plus an opt-in `slow`-marked integration test against the
+  real sentence-transformer model. Tests assert clustering structure and
+  invariants rather than exact values, so they survive dependency upgrades.
+- **CI.** A GitHub Actions workflow runs `ruff`, `ty`, and the test suite on
+  Python 3.12 and 3.13.
+- **`FuzzyClusterer(encoder=...)`** accepts an injected encoder implementing the
+  new `Encoder` protocol. When omitted (the default), the sentence-transformer
+  model is built and downloaded exactly as before; the parameter is keyword-only
+  so existing positional calls are unaffected.
+
+### Changed
+
+- Dependencies refreshed to their latest releases and floors pinned to match
+  (scikit-learn `1.9.0`, sentence-transformers `5.6.0`, plus the transitive
+  stack). This clears the Dependabot advisories for `torch` and `idna`.
+
 ## 1.0.0
 
 This is a substantial modernization release with breaking API and dependency changes. Pin `ucluster<1.0` if you need the old behavior.

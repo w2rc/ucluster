@@ -55,6 +55,23 @@ uv pip install --system -e .
 
 Then add `import ucluster.vd.plugin` to your `~/.visidatarc` as described above.
 
+### Testing
+
+Run the test suite with:
+
+```sh
+uv run pytest
+```
+
+The fuzzy-clustering tests run against a deterministic fake encoder, so the
+default run needs no network access. One integration test exercises the real
+sentence-transformer model; it is marked `slow` and skipped by default. Run it
+explicitly (downloads the model on first use) with:
+
+```sh
+uv run pytest -m slow
+```
+
 ## In The Weeds: Architecture & Design
 
 This section will eventually contain a more detailed explanation for how uCluster works. For now, here's a brief overview.

@@ -1,5 +1,6 @@
 import json
 from collections import defaultdict
+from typing import Protocol
 
 import nltk
 from loguru import logger
@@ -30,20 +31,28 @@ class TextClusterer:
         raise NotImplementedError
 
 
+class Encoder(Protocol):
+    def encode(self, texts: list[str], show_progress_bar: bool = ...) -> ndarray: ...
+
+
 class FuzzyClusterer(TextClusterer):
     DEFAULT_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 
     def __init__(
         self,
         model: str = DEFAULT_MODEL,
+        *,
+        encoder: Encoder | None = None,
         min_cluster_size: int = 3,
         min_samples: int = 3,
         alpha: float = 1.0,
         epsilon: float = 0.0,
     ) -> None:
-        from sentence_transformers import SentenceTransformer
+        if encoder is None:
+            from sentence_transformers import SentenceTransformer
 
-        self._encoder = SentenceTransformer(model)
+            encoder = SentenceTransformer(model)
+        self._encoder = encoder
         self.min_cluster_size = min_cluster_size
         self.min_samples = min_samples
         self.alpha = alpha

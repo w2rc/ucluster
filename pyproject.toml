@@ -9,14 +9,14 @@ requires-python = ">=3.12"
 dependencies = [
     "loguru>=0.7.3",
     "nltk>=3.9.4",
-    "scikit-learn>=1.9",
-    "sentence-transformers>=5.6",
+    "scikit-learn>=1.9.0",
+    "sentence-transformers>=5.6.0",
     "visidata>=3.3",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "pytest>=9.1",
+    "pytest>=9.1.1",
     "ruff>=0.15.20",
     "ty>=0.0.55",
 ]

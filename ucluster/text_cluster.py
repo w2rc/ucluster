@@ -32,7 +32,7 @@ class TextClusterer:
 
 
 class Encoder(Protocol):
-    def encode(self, texts: list[str], show_progress_bar: bool = ...) -> ndarray: ...
+    def encode(self, texts: list[str], /, *, show_progress_bar: bool = ...) -> ndarray: ...
 
 
 class FuzzyClusterer(TextClusterer):

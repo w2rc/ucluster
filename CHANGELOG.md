@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Dependencies refreshed to their latest releases and floors pinned to match
+  (sentence-transformers `6.2.0`, scikit-learn `1.9.1`, nltk `3.10.4`,
+  visidata `3.4`, plus the transitive stack, including torch `2.14` and
+  huggingface-hub `2.x`).
+- The `Encoder` protocol now takes the texts positionally and
+  `show_progress_bar` by keyword, matching how `FuzzyClusterer` calls it and
+  the sentence-transformers 6 `encode` signature.
+- CI also runs on Python 3.14; GitHub Actions bumped to current releases.
+
 ## 1.1.0
 
 A maintenance release: an automated test suite, CI, and a dependency refresh.
